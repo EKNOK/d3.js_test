@@ -1,0 +1,72 @@
+<h1>Posts#index</h1>
+<script>
+
+// set the dimensions and margins of the graph
+// グラフの大きさやマージンを設定
+var margin = {top: 20, right: 20, bottom: 30, left: 50},
+    width = 960 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+
+// parse the date / time
+// 取り込むデータを解析するパーサーを設定
+var parseTime = d3.timeParse("%Y-%m-%d");
+
+// set the ranges
+// scaleとrangeを設定
+var x = d3.scaleTime().range([0, width]);
+var y = d3.scaleLinear().range([height, 0]);
+
+// define the line
+// 折れ線グラフ作成用のジェネレータ（関数）を定義
+var valueline = d3.line()
+    .x(function(d) { return x(d.date); })
+    .y(function(d) { return y(d.close); });
+
+// append the svg obgect to the body of the page
+// appends a 'group' element to 'svg'
+// moves the 'group' element to the top left margin
+// svgの領域を設定
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+// Get the data
+// データの取り込み（データをフォーマット/「domain」を設定/svgにグラフ情報を与える）
+
+d3.json('list', function(error, data) {
+ if (error) throw error;
+
+  // format the data
+  //取り込まれたデータをフォーマットする処理
+  data.forEach(function(d) {
+      d.date = parseTime(d.date);
+      d.close = +d.close;
+  });
+
+  // Scale the range of the data
+  // domainの定義（d3.extendはd3.jsの関数（最小と最大を返す））
+  x.domain(d3.extent(data, function(d) { return d.date; }));
+  y.domain([0, d3.max(data, function(d) { return d.close; })]);
+
+  // Add the valueline path.
+  // 作成したsvg領域にグラフ部分であるpath領域をX,Y軸部分であるg領域を作成
+  svg.append("path")
+      .data([data])
+      .attr("class", "line")
+      .attr("d", valueline);
+
+  // Add the X Axis
+  svg.append("g")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x));
+
+  // Add the Y Axis
+  svg.append("g")
+      .call(d3.axisLeft(y));
+
+});
+
+</script>
