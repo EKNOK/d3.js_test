@@ -22,7 +22,7 @@ js -
 
 # References
 
-[【Qiita】Rails4 + D3.js](https://qiita.com/moriyaman/items/d8e3bfb39e59a5ed02b5)
+[【Qiita】Rails4 + D3.js](https://qiita.com/moriyaman/items/d8e3bfb39e59a5ed02b5)  
 [【個人ブログ】railsでd3.jsを描く](http://goodbyegangster.hatenablog.com/entry/2017/02/20/132922)
 
 
