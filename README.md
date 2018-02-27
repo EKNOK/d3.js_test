@@ -20,11 +20,15 @@ js -
 
 # todo
 
+- 折れ線グラフ
+- 日本地図(jsonデータの読み込み)
+- 円状
+
 # References
 
 [【Qiita】Rails4 + D3.js](https://qiita.com/moriyaman/items/d8e3bfb39e59a5ed02b5)  
 [【個人ブログ】railsでd3.jsを描く](http://goodbyegangster.hatenablog.com/entry/2017/02/20/132922)
-
+[jsonファイルをviewで読み込む](http://taremimi.hatenablog.jp/entry/2017/08/26/141753)
 
 
 # memo
