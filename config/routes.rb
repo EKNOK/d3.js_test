@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
-  get 'sample_graph/index'
+  get 'japan_maps/index'
+  get 'japan_maps/list'
 
+  get 'sample_graph/index'
   get 'sample_graph/list'
 
   root 'toppages#index'
+
   get 'posts/index', to: 'posts#index'
   get 'posts/list', to: 'posts#list'
 
