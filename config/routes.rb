@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'forces/index'
+
   get 'japan_maps/index'
   get 'japan_maps/list'
 
