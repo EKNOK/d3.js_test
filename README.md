@@ -38,5 +38,3 @@ js -
 - d3.js特有のメソッド「domain」とは投入されるデータの範囲で、「range」とはブラウザ上で描画できるサイズ、「scale(scaling)」とはその両者の差異を正規化してくれる仕組み  
   - またdomain
 - svgとはXML形式を利用して画像を描画できるもの。D3.js利用時にはこの領域をHTML常に作成し、その部分の画像情報を入れ込む流れ。`posts/index.html.erb`  
-- ?取り込むscriptのurlは`d3.v3`?と`d3.v4`?versionの違い？動かないものあり
--
