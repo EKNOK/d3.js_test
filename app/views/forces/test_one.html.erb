@@ -1,0 +1,73 @@
+<h1>forces#test_one</h1>
+<%= javascript_include_tag src='https://d3js.org/d3.v3.min.js' %>
+<script type="text/javascript">
+  var width = 800;
+  var height = 800;
+
+  var nodes = [
+    { id: 0, label: "A" },
+    { id: 1, label: "B" },
+    { id: 2, label: "C" },
+    { id: 3, label: "D" },
+    { id: 4, label: "E" }
+  ];
+
+  var links = [
+    { source: 0, target: 4 },
+    { source: 0, target: 3 },
+    { source: 0, target: 2 },
+    { source: 0, target: 1 },
+
+  ];
+
+  var force = d3.layout.force()
+      .nodes(nodes)
+      .links(links)
+      .size([width, height])
+      .distance(200)
+      .friction(0.5)
+      .charge(10)
+      .gravity(0)
+      .start();
+
+  var svg = d3.select("body")
+        .append("svg")
+        .attr({width:width, height: height});
+
+  var link = svg.selectAll("line")
+        .data(links)
+        .enter()
+        .append("line")
+        .style({ stroke: "#ccc",
+          "stroke-width" : 5
+        })
+
+  var node = svg.selectAll("circle")
+              .data(nodes)
+              .enter()
+              .append("circle")
+              .attr({r: 20,
+                     opacity: 0.5})
+              .style({"fill": "red"})
+              .call(force.drag);
+
+  var label = svg.selectAll('text')
+                .data(nodes)
+                .enter()
+                .append('text')
+                .attr({"text-anchor":"middle",
+                       "fill":"white"})
+                .style({"font-size":11})
+                .text(function(d) { return d.label; });
+
+  force.on("tick", function() {
+  link.attr({x1: function(d) { return d.source.x; },
+             y1: function(d) { return d.source.y; },
+             x2: function(d) { return d.target.x; },
+             y2: function(d) { return d.target.y; }});
+  node.attr({cx: function(d) { return d.x; },
+             cy: function(d) { return d.y; }});
+  label.attr({x: function(d) { return d.x; },
+              y: function(d) { return d.y; }});
+  });
+</script>

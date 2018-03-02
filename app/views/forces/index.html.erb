@@ -82,10 +82,9 @@
       .data(nodes)
       .enter()
       .append("circle")
-      .attr({
-          // せっかくなので半径をランダムに
+      .attr({ // せっかくなので半径をランダムに
           r: function() {return Math.random() * (70 - 10) + 10;}
-      })
+        })
       .style({
           fill: "orange"
       })
