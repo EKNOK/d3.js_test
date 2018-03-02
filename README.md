@@ -14,25 +14,26 @@ this is D3.js test
 
 # Versions
 
-Rails -5.1.5  
-ruby -2.4.3  
-js -  
+Rails - 5.1.5  
+ruby - 2.4.3  
+js -
 
 # todo
 
 - 折れ線グラフ
 - 日本地図(jsonデータの読み込み)
 - 円状
+- forse
 
 # References
 
 [【Qiita】Rails4 + D3.js](https://qiita.com/moriyaman/items/d8e3bfb39e59a5ed02b5)  
 [【個人ブログ】railsでd3.jsを描く](http://goodbyegangster.hatenablog.com/entry/2017/02/20/132922)
 [jsonファイルをviewで読み込む](http://taremimi.hatenablog.jp/entry/2017/08/26/141753)
-
+[YouTube](https://www.youtube.com/watch?v=Rj8P_-GiSzo)
 
 # memo
-- 「domain」とは投入されるデータの範囲で、「range」とはブラウザ上で描画できるサイズ、「scale(scaling)」とはその両者の差異を正規化してくれる仕組み  
+- d3.js特有のメソッド「domain」とは投入されるデータの範囲で、「range」とはブラウザ上で描画できるサイズ、「scale(scaling)」とはその両者の差異を正規化してくれる仕組み  
   - またdomain
 - svgとはXML形式を利用して画像を描画できるもの。D3.js利用時にはこの領域をHTML常に作成し、その部分の画像情報を入れ込む流れ。`posts/index.html.erb`  
--
+- 取り込むscriptのurlは`d3.v3`?と`d3.v4`?versionの違い？動かないものあり

@@ -4,32 +4,32 @@
   var height = 800;
   // nodeの定義。ここを増やすと楽しい
   var nodes = [
-    { id: 0, label: "nodeA" },
-    { id: 1, label: "nodeB" },
-    { id: 2, label: "nodeC" },
-    { id: 3, label: "nodeD" },
-    { id: 4, label: "nodeE" },
-    { id: 5, label: "nodeF" },
-    { id: 6, label: "nodeG" },
-    { id: 7, label: "nodeH" },
-    { id: 8, label: "nodeI" },
-    { id: 9, label: "nodeJ" },
-    { id: 10, label: "nodeK" },
-    { id: 11, label: "nodeL" },
-    { id: 12, label: "nodeM" },
-    { id: 13, label: "nodeN" }
+    { id: 0, label: "A" },
+    { id: 1, label: "B" },
+    { id: 2, label: "C" },
+    { id: 3, label: "D" },
+    { id: 4, label: "E" },
+    { id: 5, label: "F" },
+    { id: 6, label: "G" },
+    { id: 7, label: "H" },
+    { id: 8, label: "I" },
+    { id: 9, label: "J" },
+    { id: 10, label: "K" },
+    { id: 11, label: "L" },
+    { id: 12, label: "M" },
+    { id: 13, label: "N" }
 
   ];
 
   // nodeどうしの紐付け設定。ここをどう作るかが難しい。
   var links = [
     { source: 0, target: 1 },
-    { source: 0, target: 12 },
-    { source: 1, target: 3 },
-    { source: 1, target: 2 },
-    { source: 2, target: 6 },
-    { source: 2, target: 5 },
-    { source: 3, target: 4 },
+    { source: 0, target: 2 },
+    { source: 0, target: 3 },
+    { source: 0, target: 4 },
+    { source: 0, target: 5 },
+    { source: 0, target: 6 },
+    { source: 0, target: 7 },
     { source: 3, target: 3 },
     { source: 4, target: 2 },
     { source: 4, target: 1 },
@@ -44,7 +44,7 @@
     { source: 9, target: 11 },
     { source: 9, target: 12 },
     { source: 10, target: 12 },
-    { source: 11, target: 13 },
+    { source: 11, target: 8 },
     { source: 11, target: 13 },
     { source: 12, target: 11 },
     { source: 12, target: 5 },
@@ -57,10 +57,10 @@
       .nodes(nodes)
       .links(links)
       .size([width, height])
-      .distance(140) // node同士の距離
-      .friction(0.9) // 摩擦力(加速度)的なものらしい。
-      .charge(-100) // 寄っていこうとする力。推進力(反発力)というらしい。
-      .gravity(0.1) // 画面の中央に引っ張る力。引力。
+      .distance(200) // node同士の距離
+      .friction(0.5) // 摩擦力(加速度)的なものらしい。
+      .charge(10) // 寄っていこうとする力。推進力(反発力)というらしい。
+      .gravity(0) // 画面の中央に引っ張る力。引力。
       .start();
 
   // svg領域の作成
@@ -74,7 +74,7 @@
       .enter()
       .append("line")
       .style({stroke: "#ccc",
-      "stroke-width": 1
+      "stroke-width": 5
   });
 
   // nodesの描画(今回はsvgの円描画機能を利用)
@@ -84,7 +84,7 @@
       .append("circle")
       .attr({
           // せっかくなので半径をランダムに
-          r: function() {return Math.random() * (40 - 10) + 10;}
+          r: function() {return Math.random() * (70 - 10) + 10;}
       })
       .style({
           fill: "orange"
