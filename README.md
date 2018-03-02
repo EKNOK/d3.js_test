@@ -7,7 +7,9 @@ this is D3.js test on rails
 
 [D3.js](https://d3js.org/)  
  =>[Github](https://github.com/d3/d3)  
+
 ---
+
 [scale, range, domainのD3.js独自の概念の説明(英語)](http://www.jeromecukier.net/blog/2011/08/11/d3-scales-and-color/)  
 [requestのAPI一覧](https://github.com/d3/d3/blob/master/API.md#requests-d3-request)
 

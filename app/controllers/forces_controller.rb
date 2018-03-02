@@ -2,6 +2,9 @@ class ForcesController < ApplicationController
   def index
   end
 
-  def test_one
+  def test01
+  end
+
+  def test02
   end
 end

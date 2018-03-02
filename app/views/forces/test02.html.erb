@@ -1,0 +1,165 @@
+<h1>forces#test02</h1>
+<%= javascript_include_tag src='https://d3js.org/d3.v3.min.js' %>
+<script>
+    var width = 640;
+    var height = 480;
+
+    var svg = d3.select('body').append('svg').attr({
+        width: width,
+        height: height
+    });
+
+    var data = {
+        nodes: [
+            { name: 'aki' },
+            { name: 'mii' },
+            { name: 'akiton' }
+        ],
+        links: [
+            { source: 0, target: 2 },
+            { source: 1, target: 2 }
+        ]
+    };
+
+    var force = d3.layout.force()
+        .nodes(data.nodes)
+        .links(data.links)
+        .size([width, height])
+        .gravity(0.1)
+        .charge([-100])
+        .friction(0.95)
+        .linkDistance([100])
+        .linkStrength(1);
+
+    // レイアウト計算開始
+    force.start();
+    for (var i = 0; i < 10000; i++) {
+        force.tick();
+    }
+    force.stop();
+
+    // lineを生成
+    var line = svg.selectAll('line')
+        .data(data.links)
+        .enter()
+        .append('line')
+        .attr({
+            'stroke': 'black',
+            'x1': function(d, i) { return d.source.x; },
+            'y1': function(d, i) { return d.source.y; },
+            'x2': function(d, i) { return d.target.x; },
+            'y2': function(d, i) { return d.target.y; }
+        })
+        .style({
+        });
+
+    var circle = svg.selectAll('circle')
+        .data(data.nodes)
+        .enter()
+        .append('circle')
+        .attr({
+            'r': 8,
+            'fill': 'black',
+            'cx': function(d, i) { return d.x; },
+            'cy': function(d, i) { return d.y; }
+        })
+        .style({
+        });
+        // .call(force.drag);
+
+    var moveTarget = null;
+    circle
+        .on('mousedown', function(d, i) {
+            console.log(d.name + '(' + d.x + ',' + d.y + ')');
+            moveTarget = d;
+        })
+        .on('mouseup', function(d, i) {
+            moveTarget = null;
+        });
+
+    svg.on('mousemove', function(e) {
+        if (moveTarget != null) {
+            var mousePos = d3.mouse(this);
+            console.log('moveTarget = ' + moveTarget.name + ' (' + mousePos[0] + ',' + mousePos[1] + ')');
+            moveTarget.x = mousePos[0];
+            moveTarget.y = mousePos[1];
+
+            d3.selectAll('line')
+                .attr({
+                    'x1': function(d) { return d.source.x; },
+                    'y1': function(d) { return d.source.y; },
+                    'x2': function(d) { return d.target.x; },
+                    'y2': function(d) { return d.target.y; }
+                });
+            d3.selectAll('circle')
+                .attr({
+                    'cx': function(d) { return d.x; },
+                    'cy': function(d) { return d.y; }
+                });
+        }
+    });
+
+    svg.on('mousedown', function() {
+        if (moveTarget != null) return;
+        var newCircle = svg.append('circle');
+        var mousePos = d3.mouse(this);
+        var newData = {
+            name: 'super',
+            age: 10,
+            x: mousePos[0],
+            y: mousePos[1]
+        };
+        data.nodes.push(newData);
+        console.log('add circle: ' + newData.x + ',' + newData.y);
+        newCircle
+            .datum(newData)
+            .attr({
+                'cx': function(d, i) { console.log(d);return d.x; },
+                'cy': function(d, i) { return d.y; },
+                'r': 10,
+                'fill': 'red'
+            })
+            .on('mousedown', function(d) {
+                moveTarget = d;
+            })
+            .on('mouseup', function(d) {
+                moveTarget = null;
+            });
+        svg.append('text')
+            .datum(newData)
+            .text(function(d, i) { return d.name; })
+            .attr({
+                'font-size': '12',
+                'stroke': 'white',
+                'x': function(d, i) { return d.x; },
+                'y': function(d, i) { return d.y; }
+            });
+    });
+
+    function randomMove() {
+        for (var i = 0; i < data.nodes.length; i++) {
+            var d = data.nodes[i];
+            d.x += Math.random() * 2 <= 1 ? Math.random()*10 : -Math.random()*10;
+            d.y += Math.random() * 2 <= 1 ? Math.random()*10 : -Math.random()*10;
+
+            d3.selectAll('line')
+                .attr({
+                    'x1': function(d) { return d.source.x; },
+                    'y1': function(d) { return d.source.y; },
+                    'x2': function(d) { return d.target.x; },
+                    'y2': function(d) { return d.target.y; }
+                });
+            d3.selectAll('circle')
+                .attr({
+                    'cx': function(d) { return d.x; },
+                    'cy': function(d) { return d.y; }
+                });
+            d3.selectAll('text')
+                .attr({
+                    'x': function(d) { return d.x; },
+                    'y': function(d) { return d.y; }
+                });
+        }
+    }
+</script>
+<input type="button" value="randomMove" onClick="randomMove()"/>
