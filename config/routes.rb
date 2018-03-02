@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'forces/index'
   get 'forces/test01'
   get 'forces/test02'
+  get 'forces/test03'
 
   get 'japan_maps/index'
   get 'japan_maps/list'

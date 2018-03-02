@@ -7,4 +7,7 @@ class ForcesController < ApplicationController
 
   def test02
   end
+
+  def test03
+  end
 end
