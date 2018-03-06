@@ -8,10 +8,15 @@ this is D3.js test on rails
 [D3.js](https://d3js.org/)  
  =>[Github](https://github.com/d3/d3)  
 
+[d3-force](https://github.com/d3/d3-force)  
 ---
 
 [scale, range, domainのD3.js独自の概念の説明(英語)](http://www.jeromecukier.net/blog/2011/08/11/d3-scales-and-color/)  
-[requestのAPI一覧](https://github.com/d3/d3/blob/master/API.md#requests-d3-request)
+[requestのAPI一覧](https://github.com/d3/d3/blob/master/API.md#requests-d3-request)  
+[test03参考1(英語)](https://bl.ocks.org/mbostock/4062045#index.html)  
+[test03参考2(Qiita)](https://qiita.com/junkoda/items/2d12ecdd3b4b5c99d994)
+[v3→v4の変更点](https://www.slideshare.net/xxshimizuxx/d3-ver4)  
+
 
 # Versions
 

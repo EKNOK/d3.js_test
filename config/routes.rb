@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   get 'forces/test01'
   get 'forces/test02'
   get 'forces/test03'
+  get 'forces/test04'
+  get 'forces/test05'
 
   get 'japan_maps/index'
   get 'japan_maps/list'

@@ -10,4 +10,11 @@ class ForcesController < ApplicationController
 
   def test03
   end
+
+  def test04
+  end
+
+  def test05
+  end
+  
 end
